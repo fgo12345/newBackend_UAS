@@ -3,8 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
 import { Send, Activity, User } from 'lucide-react';
 
-const socket = io.connect("https://uasbackend-production-3bed.up.railway.app");
-
+const socket = io("https://uasbackend-production-3bed.up.railway.app", {
+  transports: ["websocket"],
+  secure: true
+});
 const Chat = () => {
   const navigate = useNavigate();
   const [myUsername, setMyUsername] = useState("");
