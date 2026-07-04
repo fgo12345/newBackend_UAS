@@ -40,7 +40,7 @@ const Dashboard = () => {
           console.error("Gagal membaca token:", decodeError);
         }
 
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/api/health-summary`, {
+        const response = await fetch("https://uasbackend-production-3bed.up.railway.app/api/health-summary", {
           method: 'GET',
           headers: {
             'Authorization': `Bearer ${token}` 
