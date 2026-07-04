@@ -34,7 +34,7 @@ const Chat = () => {
     }
 
     
-    fetch(`${import.meta.env.API_URL}/api/auth/users`, {
+    fetch(`${import.meta.env.VITE_API_URL}/api/auth/users`, {
       headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
     })
       .then(res => {
@@ -94,7 +94,7 @@ const Chat = () => {
     if (!room) return;
     try {
       const token = localStorage.getItem('token');
-      const response = await fetch(`${import.meta.env.API_URL}/api/health-summary`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/health-summary`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       const data = await response.json();

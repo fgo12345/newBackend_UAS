@@ -13,7 +13,7 @@ const Medications = () => {
     if (!token) return navigate('/auth');
 
     try {
-      const response = await fetch(`${import.meta.env.API_URL}/api/medications`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/medications`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       if (response.ok) {
@@ -35,7 +35,7 @@ const Medications = () => {
     const token = localStorage.getItem('token');
 
     try {
-      const response = await fetch(`${import.meta.env.API_URL}/api/medications`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/medications`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +62,7 @@ const Medications = () => {
     const newStatus = currentStatus ? 0 : 1; 
 
     try {
-      const response = await fetch(`${import.meta.env.API_URL}/api/medications/${id}`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/medications/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
