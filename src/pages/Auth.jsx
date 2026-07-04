@@ -28,7 +28,7 @@ const Auth = () => {
 
     try {
       let data;
-      const endpoint = isRegister ? 'auth/register' : 'auth/login';
+      const endpoint = isRegister ? '/api/auth/register' : '/api/auth/login';
       
       const response = await fetch(apiBase + endpoint, {
         method: 'POST',
