@@ -1,0 +1,3 @@
+nama tim: back_end
+nim dan nama : Figo Kosasih(241111993)
+Teknologi yang digunakan:React , Node/Express, MySql, JWT/Bcrypt,tailwind
