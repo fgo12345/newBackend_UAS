@@ -71,6 +71,23 @@ const Dashboard = () => {
     fetchHealthData();
   }, [navigate]);
 
+  const getBMIStatus = (w, h) => {
+  const bmi = (w / Math.pow(h / 100, 2));
+  if (bmi < 18.5) return "Kurus";
+  if (bmi < 25) return "Ideal";
+  if (bmi < 30) return "Gemuk";
+  return "Obesitas";
+};
+
+const getBPLabel = (bp) => {
+  if (bp === '-') return "Data Kosong";
+  
+  const systolic = parseInt(bp.split('/')[0]);
+  if (systolic < 120) return "Normal";
+  if (systolic <= 129) return "Elevated";
+  return "Tinggi";
+};
+
   const calculateBMI = (w, h) => {
     if (!w || !h) return 0;
     return (w / Math.pow(h / 100, 2)).toFixed(1);
@@ -88,7 +105,7 @@ const Dashboard = () => {
     <div className="space-y-8 animate-fade-in-up">
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-blue-100 flex justify-between items-center">
         <div>
-          {/* 3. Inject the username state into your greeting */}
+          
           <h1 className="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-700 to-indigo-600">
             Halo {username}, Apa Kabar Hari Ini?
           </h1>
@@ -97,37 +114,33 @@ const Dashboard = () => {
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-gradient-to-br from-emerald-400 to-teal-600 p-6 rounded-3xl shadow-lg text-white transform hover:-translate-y-2 transition-all duration-300">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="text-emerald-50 font-medium">Indeks Massa Tubuh</p>
-              <h2 className="text-5xl font-bold mt-2 drop-shadow-md">
-                {calculateBMI(healthSummary.weight, healthSummary.height)}
-              </h2>
-            </div>
-            <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
-              <Scale size={36} className="text-white" />
-            </div>
-          </div>
-          <div className="mt-6 bg-black/10 py-2 px-4 rounded-xl inline-block text-sm font-semibold">
-            Status: Ideal 
-          </div>
-        </div>
 
-        <div className="bg-gradient-to-br from-rose-400 to-red-500 p-6 rounded-3xl shadow-lg text-white transform hover:-translate-y-2 transition-all duration-300">
-          <div className="flex justify-between items-start">
-            <div>
-              <p className="text-rose-100 font-medium">Tekanan Darah</p>
-              <h2 className="text-5xl font-bold mt-2 drop-shadow-md">{healthSummary.bloodPressure}</h2>
-            </div>
-            <div className="bg-white/20 p-3 rounded-2xl backdrop-blur-sm">
-              <Heart size={36} className="text-white" />
-            </div>
-          </div>
-          <div className="mt-6 bg-black/10 py-2 px-4 rounded-xl inline-block text-sm font-semibold">
-            mmHg (Normal) 
-          </div>
-        </div>
+  <div className="bg-gradient-to-br from-emerald-400 to-teal-600 p-6 rounded-3xl shadow-lg text-white">
+    <div className="flex justify-between items-start">
+      <div>
+        <p className="text-emerald-50 font-medium">Indeks Massa Tubuh</p>
+        <h2 className="text-5xl font-bold mt-2">{calculateBMI(healthSummary.weight, healthSummary.height)}</h2>
+      </div>
+      <Scale size={36} className="text-white" />
+    </div>
+    <div className="mt-6 bg-black/10 py-2 px-4 rounded-xl inline-block text-sm font-semibold">
+      Status: {getBMIStatus(healthSummary.weight, healthSummary.height)}
+    </div>
+  </div>
+
+     
+  <div className="bg-gradient-to-br from-rose-400 to-red-500 p-6 rounded-3xl shadow-lg text-white">
+    <div className="flex justify-between items-start">
+      <div>
+        <p className="text-rose-100 font-medium">Tekanan Darah</p>
+        <h2 className="text-5xl font-bold mt-2">{healthSummary.bloodPressure}</h2>
+      </div>
+      <Heart size={36} className="text-white" />
+    </div>
+    <div className="mt-6 bg-black/10 py-2 px-4 rounded-xl inline-block text-sm font-semibold">
+      {getBPLabel(healthSummary.bloodPressure)}
+    </div>
+  </div>
 
         <div className="bg-gradient-to-br from-amber-400 to-orange-500 p-6 rounded-3xl shadow-lg text-white transform hover:-translate-y-2 transition-all duration-300">
           <div className="flex justify-between items-start">
