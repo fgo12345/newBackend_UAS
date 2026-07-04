@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import io from 'socket.io-client';
 import { Send, Activity, User } from 'lucide-react';
 
-const socket = io.connect("https://uasbackend-production-3bed.up.railway.app");
+const socket = io.connect("https://new-backend-jqswx0z94-fgo12345s-projects.vercel.app");
 
 const Chat = () => {
   const navigate = useNavigate();
