@@ -9,7 +9,7 @@ const Auth = () => {
   const [isLoading, setIsLoading] = useState(false);
   
   const navigate = useNavigate();
-  const apiBase = import.meta.env.VITE_API_URL;
+ const apiBase = "https://uasbackend-production-3bed.up.railway.app";
 
 
   const toggleIsRegister = () => {
